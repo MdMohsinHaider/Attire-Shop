@@ -48,6 +48,13 @@ public class Admin {
         this.role = role;
     }
 
+    public Admin(String name, String email, String phone, String role) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.role = role;
+    }
+
     // Getter and setter methods for each field
 
     public String getAdminID() {

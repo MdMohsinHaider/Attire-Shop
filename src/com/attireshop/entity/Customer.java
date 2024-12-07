@@ -59,6 +59,15 @@ public class Customer {
         this.totalPurchases = totalPurchases;
     }
 
+    public Customer(String name, String email, String phone, String address, String membershipLevel, double totalPurchases) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.membershipLevel = membershipLevel;
+        this.totalPurchases = totalPurchases;
+    }
+
     // Getter and setter methods for each field
 
     public String getCustomerID() {
