@@ -17,7 +17,12 @@ public class Shop {
         super();
     }
 
-    public String getShop_name() {
+    final public String getShop_name() {
         return "RedBerry PVT LTD Company";
+    }
+
+    // Shop Executing
+    final public void executingShop(){
+        System.out.println("Shop Open");
     }
 }
