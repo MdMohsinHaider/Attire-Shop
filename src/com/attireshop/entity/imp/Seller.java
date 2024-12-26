@@ -1,12 +1,16 @@
-package com.attireshop.entity;
+package com.attireshop.entity.imp;
 
+import com.attireshop.entity.Sellers;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Seller {
+public class Seller implements Serializable, Sellers {
     // Private fields for encapsulation
     private String sellerID;
     private String name;
     private String email;
+    private String password;
     private String phone;
     private String address;
     private String companyName;
@@ -16,6 +20,11 @@ public class Seller {
     public Seller() {
         // default Constructor of this Class.
         super();
+    }
+
+    public Seller(String msg){
+        // Massage Printing
+        System.err.println("From Seller : "+msg);
     }
 
     public Seller(String sellerID, String name, String email, String phone, String address, String companyName, double totalSales, String accountStatus) {
@@ -32,6 +41,18 @@ public class Seller {
     public Seller(String name, String email, String phone, String address, String companyName, double totalSales, String accountStatus) {
         this.name = name;
         this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.companyName = companyName;
+        this.totalSales = totalSales;
+        this.accountStatus = accountStatus;
+    }
+
+    public Seller(String sellerID, String name, String email, String password, String phone, String address, String companyName, double totalSales, String accountStatus) {
+        this.sellerID = sellerID;
+        this.name = name;
+        this.email = email;
+        this.password = password;
         this.phone = phone;
         this.address = address;
         this.companyName = companyName;
@@ -103,29 +124,52 @@ public class Seller {
         this.accountStatus = accountStatus;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Seller seller = (Seller) o;
-        return Double.compare(totalSales, seller.totalSales) == 0 && Objects.equals(sellerID, seller.sellerID) && Objects.equals(name, seller.name) && Objects.equals(email, seller.email) && Objects.equals(phone, seller.phone) && Objects.equals(address, seller.address) && Objects.equals(companyName, seller.companyName) && Objects.equals(accountStatus, seller.accountStatus);
+        return Double.compare(totalSales, seller.totalSales) == 0 && Objects.equals(sellerID, seller.sellerID) && Objects.equals(name, seller.name) && Objects.equals(email, seller.email) && Objects.equals(password, seller.password) && Objects.equals(phone, seller.phone) && Objects.equals(address, seller.address) && Objects.equals(companyName, seller.companyName) && Objects.equals(accountStatus, seller.accountStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sellerID, name, email, phone, address, companyName, totalSales, accountStatus);
+        return Objects.hash(sellerID, name, email, password, phone, address, companyName, totalSales, accountStatus);
     }
 
     @Override
     public String toString() {
-        return "Seller{" +
-                "sellerID='" + sellerID + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", totalSales=" + totalSales +
-                ", accountStatus='" + accountStatus + '\'' +
-                '}';
+        if (password != null){
+            return "Seller{" +
+                    "sellerID='" + sellerID + '\'' +
+                    ", name='" + name + '\'' +
+                    ", email='" + email + '\'' +
+                    ", password='" + password + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", address='" + address + '\'' +
+                    ", companyName='" + companyName + '\'' +
+                    ", totalSales=" + totalSales +
+                    ", accountStatus='" + accountStatus + '\'' +
+                    '}';
+        }
+        else {
+            return "Seller{" +
+                    "sellerID='" + sellerID + '\'' +
+                    ", name='" + name + '\'' +
+                    ", email='" + email + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", address='" + address + '\'' +
+                    ", companyName='" + companyName + '\'' +
+                    ", totalSales=" + totalSales +
+                    ", accountStatus='" + accountStatus + '\'' +
+                    '}';
+        }
     }
 }

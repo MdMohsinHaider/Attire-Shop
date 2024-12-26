@@ -14,9 +14,9 @@ public class ConnectionDB {
             DriverManager.registerDriver(driver);
 
             // Step: 2
-            String url= "jdbc:mysql://localhost:3306/DB NAME";
-            String user_name = "";
-            String passwordString = " ";
+            String url= "jdbc:mysql://localhost:3306/DBNAme";
+            String user_name = "root";
+            String passwordString = "root";
             return DriverManager.getConnection(url,user_name,passwordString);
 
         } catch (Exception e) {

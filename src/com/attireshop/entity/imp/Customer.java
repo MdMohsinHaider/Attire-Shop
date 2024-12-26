@@ -1,5 +1,8 @@
-package com.attireshop.entity;
+package com.attireshop.entity.imp;
 
+import com.attireshop.entity.Customers;
+
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -9,7 +12,7 @@ import java.util.Objects;
  * and setter methods for all fields, and overrides the equals, hashCode,
  * and toString methods for proper handling of customer objects.
  */
-public class Customer {
+public class Customer implements Serializable, Customers {
     // Unique identifier for the customer
     private String customerID;
 
@@ -18,6 +21,8 @@ public class Customer {
 
     // Email address of the customer
     private String email;
+
+    private String password;
 
     // Contact the phone number of the customer
     private String phone;
@@ -36,6 +41,10 @@ public class Customer {
      */
     public Customer() {
         super();
+    }
+
+    public Customer(String msg){
+        System.err.println("From Customer : "+msg);
     }
 
     /**
@@ -62,6 +71,17 @@ public class Customer {
     public Customer(String name, String email, String phone, String address, String membershipLevel, double totalPurchases) {
         this.name = name;
         this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.membershipLevel = membershipLevel;
+        this.totalPurchases = totalPurchases;
+    }
+
+    public Customer(String customerID, String name, String email, String password, String phone, String address, String membershipLevel, double totalPurchases) {
+        this.customerID = customerID;
+        this.name = name;
+        this.email = email;
+        this.password = password;
         this.phone = phone;
         this.address = address;
         this.membershipLevel = membershipLevel;
@@ -126,6 +146,14 @@ public class Customer {
         this.totalPurchases = totalPurchases;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /**
      * Compares this Customer object with another object for equality.
      *
@@ -136,13 +164,7 @@ public class Customer {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Double.compare(totalPurchases, customer.totalPurchases) == 0
-                && Objects.equals(customerID, customer.customerID)
-                && Objects.equals(name, customer.name)
-                && Objects.equals(email, customer.email)
-                && Objects.equals(phone, customer.phone)
-                && Objects.equals(address, customer.address)
-                && Objects.equals(membershipLevel, customer.membershipLevel);
+        return Double.compare(totalPurchases, customer.totalPurchases) == 0 && Objects.equals(customerID, customer.customerID) && Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && Objects.equals(password, customer.password) && Objects.equals(phone, customer.phone) && Objects.equals(address, customer.address) && Objects.equals(membershipLevel, customer.membershipLevel);
     }
 
     /**
@@ -152,8 +174,9 @@ public class Customer {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(customerID, name, email, phone, address, membershipLevel, totalPurchases);
+        return Objects.hash(customerID, name, email, password, phone, address, membershipLevel, totalPurchases);
     }
+
 
     /**
      * Returns a string representation of the Customer object.
@@ -162,14 +185,28 @@ public class Customer {
      */
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerID='" + customerID + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", membershipLevel='" + membershipLevel + '\'' +
-                ", totalPurchases=" + totalPurchases +
-                '}';
+        if (password != null){
+            return "Customer{" +
+                    "customerID='" + customerID + '\'' +
+                    ", name='" + name + '\'' +
+                    ", email='" + email + '\'' +
+                    ", password='" + password + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", address='" + address + '\'' +
+                    ", membershipLevel='" + membershipLevel + '\'' +
+                    ", totalPurchases=" + totalPurchases +
+                    '}';
+        }
+        else {
+            return "Customer{" +
+                    "customerID='" + customerID + '\'' +
+                    ", name='" + name + '\'' +
+                    ", email='" + email + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", address='" + address + '\'' +
+                    ", membershipLevel='" + membershipLevel + '\'' +
+                    ", totalPurchases=" + totalPurchases +
+                    '}';
+        }
     }
 }

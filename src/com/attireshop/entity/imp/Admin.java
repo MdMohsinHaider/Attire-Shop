@@ -1,5 +1,8 @@
-package com.attireshop.entity;
+package com.attireshop.entity.imp;
 
+import com.attireshop.entity.Admins;
+
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -8,7 +11,7 @@ import java.util.Objects;
  * This class provides getter and setter methods for all fields, and overrides
  * the equals, hashCode, and toString methods for proper handling of admin objects.
  */
-public class Admin {
+public class Admin implements Serializable, Admins {
     // Unique identifier for the admin
     private String adminID;
 
@@ -17,6 +20,9 @@ public class Admin {
 
     // Email address of the admin
     private String email;
+
+    // password of the admin
+    private String password;
 
     // Contact phone number of the admin
     private String phone;
@@ -31,6 +37,10 @@ public class Admin {
         super();
     }
 
+    public Admin(String msg){
+        System.err.println("From Admin : "+msg);
+    }
+
     /**
      * Parameterized constructor for creating an Admin object with all details.
      *
@@ -40,7 +50,17 @@ public class Admin {
      * @param phone   Contact phone number of the admin
      * @param role    Role of the admin in the system
      */
-    public Admin(String adminID, String name, String email, String phone, String role) {
+    public Admin(String adminID, String name, String email, String password, String phone, String role) {
+        this.adminID = adminID;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+    }
+
+    // without password.
+    public Admin(String adminID,String name, String email, String phone, String role) {
         this.adminID = adminID;
         this.name = name;
         this.email = email;
@@ -48,11 +68,9 @@ public class Admin {
         this.role = role;
     }
 
-    public Admin(String name, String email, String phone, String role) {
-        this.name = name;
+    public Admin(String email, String password) {
         this.email = email;
-        this.phone = phone;
-        this.role = role;
+        this.password = password;
     }
 
     // Getter and setter methods for each field
@@ -81,6 +99,14 @@ public class Admin {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -97,46 +123,38 @@ public class Admin {
         this.role = role;
     }
 
-    /**
-     * Compares this Admin object with another object for equality.
-     *
-     * @param o The object to compare with
-     * @return true if the objects are equal, false otherwise
-     */
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Admin admin = (Admin) o;
-        return Objects.equals(adminID, admin.adminID)
-                && Objects.equals(name, admin.name)
-                && Objects.equals(email, admin.email)
-                && Objects.equals(phone, admin.phone)
-                && Objects.equals(role, admin.role);
+        return Objects.equals(adminID, admin.adminID) && Objects.equals(name, admin.name) && Objects.equals(email, admin.email) && Objects.equals(password, admin.password) && Objects.equals(phone, admin.phone) && Objects.equals(role, admin.role);
     }
 
-    /**
-     * Generates a hash code for the Admin object.
-     *
-     * @return The hash code
-     */
     @Override
     public int hashCode() {
-        return Objects.hash(adminID, name, email, phone, role);
+        return Objects.hash(adminID, name, email, password, phone, role);
     }
 
-    /**
-     * Returns a string representation of the Admin object.
-     *
-     * @return A string containing the Admin details
-     */
     @Override
     public String toString() {
-        return "Admin{" +
-                "adminID='" + adminID + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+        if (password != null){
+            return "Admin{" +
+                    "adminID='" + adminID + '\'' +
+                    ", name='" + name + '\'' +
+                    ", email='" + email + '\'' +
+                    ", password='" + password + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", role='" + role + '\'' +
+                    '}';
+        }
+        else{
+            return "Admin{" +
+                    "adminID='" + adminID + '\'' +
+                    ", name='" + name + '\'' +
+                    ", email='" + email + '\'' +
+                    ", phone='" + phone + '\'' +
+                    ", role='" + role + '\'' +
+                    '}';
+        }
     }
 }
