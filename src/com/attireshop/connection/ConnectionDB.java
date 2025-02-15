@@ -14,9 +14,9 @@ public class ConnectionDB {
             DriverManager.registerDriver(driver);
 
             // Step: 2
-            String url= "jdbc:mysql://localhost:3306/DBNAme";
+            String url= "jdbc:mysql://localhost:3306/attire-shop";
             String user_name = "root";
-            String passwordString = "root";
+            String passwordString = "Devil#Root";
             return DriverManager.getConnection(url,user_name,passwordString);
 
         } catch (Exception e) {
